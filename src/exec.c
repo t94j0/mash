@@ -10,16 +10,19 @@ void exec(char **argv){
     } else if(strcmp(argv[0], "exit") == 0 || strcmp(argv[0], "quit") == 0){
         printf("good bye\n");
         exit(0);
+    } else if(strcmp(argv[0], "help") == 0){
+        printf("\nAvailable commands:\nexit - quits terminal\ncd - changes directory\nhelp - brings this menu");
     } else {
         new_process(argv);
     }
 }
+
 void new_process(char **argv){
     pid_t pid;
     int status;
     if((pid = fork()) == 0){
         if (execvp(*argv, argv) < 0){
-            printf("Error: No command -->%s\n<--", argv[0]);
+            printf("Error: No command %s\n", argv[0]);
         }
     } else if (pid < 0){
         printf("Error, %s failed\n", argv[0]);

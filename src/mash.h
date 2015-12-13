@@ -2,17 +2,25 @@
 #define STD
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
+#include <sys/wait.h>
+#endif
+
+#ifndef INPUT_H
+#define BUFFER_SIZE 2048
+#define INPUT_H
+char* readline();
 #endif
 
 #ifndef TOKENIZER_H
 #define TOKENIZER_H
-void tokenizer(char *cmd, char **argv);
+char** tokenizer(char *cmd);
 #endif
 
 #ifndef EXEC_H
 #define EXEC_H
-void exec(char **argv);
+int exec(char **argv);
 #endif
 
 #ifndef TERM_COLORS

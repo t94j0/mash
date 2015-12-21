@@ -8,7 +8,19 @@ use std::fs::File;
 
 //Nothing atm
 fn mash_init(){
-    //let mut mash_config = try!(File::open(""));
+    //Attempt at making Aliases
+    /*
+    let mut HOME = String::new();
+    match env::var_os("HOME") {
+        Some(val) => HOME=val,
+        None => HOME=None
+    }
+    if HOME == None {
+        return;
+    }
+    let mut mash_config = try!(File::open(format!("{}/mashrc", HOME)));
+    let alias_vec = Vec<&str>::new();
+    */
 }
 
 fn mash_tokenize(input: &str) -> Vec<&str>{
@@ -55,6 +67,10 @@ fn mash_parse(mut args: Vec<&str>) -> bool{
         "exit" => {
             println!("Exiting");
             false
+        },
+        "help" => {
+            print!("Welcome to MASH!\nYou are better off using zsh\n\nCreated by Max Harley\n");
+            true
         },
         command => mash_exec(command, &args[1..])
     };

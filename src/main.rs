@@ -33,8 +33,15 @@ fn mash_parse(mut args: Vec<&str>) -> bool{
             mash_exec("ls", &args[1..])
         },
         "cd" => {
-            println!("cd to {}", args[1]);
-            true
+            match env::set_current_dir(&Path::new(args[1])).is_ok(){
+                true => {
+                    true
+                },
+                false => {
+                    println!("That is not a directory");
+                    true
+                }
+            }
         },
         "exit" => {
             println!("Exiting");

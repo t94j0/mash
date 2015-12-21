@@ -1,5 +1,5 @@
 [root]
-name = "command"
+name = "mash"
 version = "0.1.0"
 dependencies = [
  "glob 0.2.10 (registry+https://github.com/rust-lang/crates.io-index)",

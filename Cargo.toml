@@ -4,4 +4,5 @@ version = "0.1.0"
 authors = ["Max Harley <augeocacher@gmail.com>"]
 
 [dependencies]
-glob = "0.2.10"
+term = "0.2"
+

@@ -1,10 +1,15 @@
+extern crate term;
+
 use std::process::Command;
 use std::path::Path;
 use std::env;
 use std::io::{self, Write};
+use std::fs::File;
 
 //Nothing atm
-fn mash_init(){}
+fn mash_init(){
+    //let mut mash_config = try!(File::open(""));
+}
 
 fn mash_tokenize(input: &str) -> Vec<&str>{
     let ret: Vec<&str> = input.split_whitespace()
@@ -14,11 +19,15 @@ fn mash_tokenize(input: &str) -> Vec<&str>{
 
 //Exec will actually start a process
 fn mash_exec(command: &str, args: &[&str]) -> bool{
-    let status = Command::new(command)
+    match Command::new(command)
         .args(&args)
-        .status()
-        .unwrap();
-    true
+        .status() {
+            Ok(result) => true,
+            Err(result) => {
+                println!("mash: {} is not a command", command);
+                true
+            }
+        }
 }
 
 /*
@@ -63,7 +72,10 @@ fn mash_loop(){
     let mut status: bool = true;
     while status {
         input.clear();
-        print!("> ");
+        let mut t = term::stdout().unwrap();
+        t.fg(term::color::RED).unwrap();
+        write!(t, "> ").unwrap();
+        t.reset().unwrap();
         io::stdout().flush().unwrap();
         io::stdin().read_line(&mut input)
             .ok()

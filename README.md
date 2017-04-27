@@ -1,7 +1,7 @@
-#(Ma)x's (Sh)ell - MASH
-I was interested on how shells worked, so I made one. I started the project in C, but after figuring out what rust was, I decided to make it in rust.
+(Ma)x's (Sh)ell - MASH
+My experiment with the Rust programming language
 
-##How to build
+How to build
 ```
 cargo run
 ```
